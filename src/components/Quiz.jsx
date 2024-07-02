@@ -4,31 +4,20 @@ import Question from "./Question";
 import quizCompleted from "../assets/quiz-complete.png";
 
 const Quiz = () => {
-  const [answerColor, setAnswerColor] = useState("");
+ 
   const [userAnswers, setUserAnswers] = useState([]);
 
-  const activeQuestionIndex =
-    answerColor === "" ? userAnswers.length : userAnswers.length - 1;
+  const activeQuestionIndex = userAnswers.length
   const quizIsComplete = activeQuestionIndex === QUESTIONS.length;
 
   const handleSelectAnswer = useCallback(
     function handleSelectAnswer(selectedAnswer) {
-      setAnswerColor("answered");
+    
       setUserAnswers((prevAnswer) => {
         return [...prevAnswer, selectedAnswer];
       });
-      setTimeout(() => {
-        if (selectedAnswer === QUESTIONS[activeQuestionIndex].answers[0]) {
-          setAnswerColor("correct");
-        } else {
-          setAnswerColor("wrong");
-        }
-        setTimeout(() => {
-          setAnswerColor("");
-        }, 2000);
-      }, 1000);
-    },
-    [activeQuestionIndex]
+      
+    },[]
   );
 
   const handleSkipAnswer = useCallback(
@@ -49,10 +38,7 @@ const Quiz = () => {
     <div id="quiz">
       <Question
         key={activeQuestionIndex}
-        questionText={QUESTIONS[activeQuestionIndex].text}
-        answers={QUESTIONS[activeQuestionIndex].answers}
-        answerColor={answerColor}
-        selectedAnswer={userAnswers[userAnswers.length - 1]}
+        index={activeQuestionIndex}
         onSelectAnswer={handleSelectAnswer}
         onSkipAnswer={handleSkipAnswer}
       />
