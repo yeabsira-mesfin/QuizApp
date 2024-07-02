@@ -1,8 +1,8 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, act } from "react";
 import QUESTIONS from "../questions";
-import QuestionTimer from "./QuestionTimer";
+import Question from "./Question";
 import quizCompleted from "../assets/quiz-complete.png";
-import Answers from "./Answers";
+
 const Quiz = () => {
   const [answerColor, setAnswerColor] = useState("");
   const [userAnswers, setUserAnswers] = useState([]);
@@ -47,20 +47,15 @@ const Quiz = () => {
 
   return (
     <div id="quiz">
-      <div id="question">
-        <QuestionTimer
-          key={activeQuestionIndex}
-          timeout={10000}
-          onTimeout={handleSkipAnswer}
-        />
-        <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
-        <Answers
-          answers={QUESTIONS[activeQuestionIndex].answers}
-          selectedAnswer={userAnswers[userAnswers.length - 1]}
-          answerColor={answerColor}
-          onSelect={handleSelectAnswer}
-        />
-      </div>
+      <Question
+        key={activeQuestionIndex}
+        questionText={QUESTIONS[activeQuestionIndex].text}
+        answers={QUESTIONS[activeQuestionIndex].answers}
+        answerColor={answerColor}
+        selectedAnswer={userAnswers[userAnswers.length - 1]}
+        onSelectAnswer={handleSelectAnswer}
+        onSkipAnswer={handleSkipAnswer}
+      />
     </div>
   );
 };
