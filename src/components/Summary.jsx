@@ -91,7 +91,7 @@ let wrongA = 7 - skippedA - correctA;
         })}
       </ol>
       <h1 className={winStatmentClass}>{winStatment}</h1>
-     <h3>{},{correctA},{wrongA}</h3>
+    
     </div>
   );
 };
