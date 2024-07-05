@@ -8,9 +8,23 @@ const Summary = ({ userAnswers }) => {
     const SkippedAnswerPercent = Math.round((skippedAnswers.length / userAnswers.length) * 100);
     const correctAnswerPercent = Math.round((correctAnswewrs.length / userAnswers.length) * 100);
     const wrongAnswerPercent = Math.round( 100 - SkippedAnswerPercent - correctAnswerPercent);
+
+    let winStatment = '';
+    let winStatmentClass = '';
+
+    if(correctAnswerPercent>wrongAnswerPercent){
+        winStatment = "You won!"
+        winStatmentClass = "winStatmentWin";
+    } else if(correctAnswerPercent< wrongAnswerPercent){
+        winStatment = "You Lost!"
+        winStatment = "winStatmentLose";
+    } else{
+        winStatment = 'You didn\'t answer the whole question'
+        winStatmentClass = "winStatmentSkipped";
+    }
   return (
     <div id="summary">
-      <img src={quizCompleted} alt="Trophy" />
+      <img src={correctAnswerPercent>wrongAnswerPercent? quizCompleted : null} alt="Trophy" />
       <h2>Quiz Completed</h2>
       <div id="summary-stats">
         <p>
@@ -37,7 +51,7 @@ const Summary = ({ userAnswers }) => {
                 cssClass += ' wrong'
             }
           return (
-            <li key={answer}>
+            <li key={index}>
               <h3>{index + 1}</h3>
               <p className="question">{QUESTION[index].text}</p>
               <p className={cssClass}>{answer?? 'Skipped'}</p>
@@ -45,6 +59,8 @@ const Summary = ({ userAnswers }) => {
           );
         })}
       </ol>
+      <h1 className={winStatmentClass}>{winStatment}</h1>
+     
     </div>
   );
 };
