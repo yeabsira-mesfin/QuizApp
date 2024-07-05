@@ -17,7 +17,7 @@ const Summary = ({ userAnswers }) => {
         winStatmentClass = "winStatmentWin";
     } else if(correctAnswerPercent< wrongAnswerPercent){
         winStatment = "You Lost!"
-        winStatment = "winStatmentLose";
+        winStatmentClass = "winStatmentLose";
     } else{
         winStatment = 'You didn\'t answer the whole question'
         winStatmentClass = "winStatmentSkipped";
