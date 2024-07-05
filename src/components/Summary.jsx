@@ -1,6 +1,7 @@
 import React from "react";
 import QUESTION from "../questions";
 import quizCompleted from "../assets/quiz-complete.png";
+import tryAgain from '../assets/TryAgain.png'
 const Summary = ({ userAnswers }) => {
     const skippedAnswers = userAnswers.filter(answer=> answer === null);
     const correctAnswewrs = userAnswers.filter((answer,index)=>answer === QUESTION[index].answers[0])
@@ -24,7 +25,7 @@ const Summary = ({ userAnswers }) => {
     }
   return (
     <div id="summary">
-      <img src={correctAnswerPercent>wrongAnswerPercent? quizCompleted : null} alt="Trophy" />
+      <img src={correctAnswerPercent>wrongAnswerPercent? quizCompleted : tryAgain} alt="Trophy" />
       <h2>Quiz Completed</h2>
       <div id="summary-stats">
         <p>
