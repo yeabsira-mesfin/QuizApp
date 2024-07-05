@@ -28,16 +28,16 @@ const Summary = ({ userAnswers }) => {
       <h2>Quiz Completed</h2>
       <div id="summary-stats">
         <p>
-          <span className="number">{SkippedAnswerPercent}%</span>
-          <span className="text">Skipped</span>
-        </p>
-        <p>
           <span className="number">{correctAnswerPercent}%</span>
           <span className="text">Correctly Answered</span>
         </p>
         <p>
           <span className="number">{wrongAnswerPercent}%</span>
           <span className="text">Incorrecty Answered</span>
+        </p>
+        <p>
+          <span className="number">{SkippedAnswerPercent}%</span>
+          <span className="text">Skipped</span>
         </p>
       </div>
       <ol>
